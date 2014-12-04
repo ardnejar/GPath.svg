@@ -29,6 +29,7 @@ function parseSVG (svg_document) {
   , svg_contents = $(parsed_svg).find('svg')
   , groups_xml = svg_contents.find('g')
 
+
   if (groups_xml.length) {
     for (var i = 0; i < groups_xml.length; i++) {
       groups_object.groups.push( parseGroups(groups_xml[i]) )
@@ -70,7 +71,6 @@ function extractLayer (svg_contents) {
 
 function parseShape (index, svg_shape) {
 
-console.log(svg_shape.nodeName)
   switch (svg_shape.nodeName) {
     case 'path':
       points = pathToGPath(svg_shape.pathSegList)
@@ -92,7 +92,6 @@ console.log(svg_shape.nodeName)
       points = extractSVGpoints(svg_shape, ['cx', 'cy', 'r'])
       break
   }
-console.dir(points)
 
   var layer = {'name': svg_shape.id, 'count': index, 'shape': svg_shape.nodeName, 'points': points}
 
@@ -167,9 +166,9 @@ function pointsToGPath (points) {
 
 function pathToGPath(points) {
   var gpath_array = []
-  for (var i = 0; i < points.length; i++) {
-    if (points[i].constructor.name != 'SVGPathSegClosePath') {
-      gpath_array.push(adjustPathPoint(points[i]))    
+  for (var i = 0; i < points.numberOfItems; i++) {
+    if (points.getItem(i).constructor != SVGPathSegClosePath) {
+      gpath_array.push(adjustPathPoint(points.getItem(i)))    
     }
   }
   return gpath_array

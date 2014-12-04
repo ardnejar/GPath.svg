@@ -5,8 +5,8 @@ TEST
 
 REVISE/REFACTORING
   parse-svg-path! learn how to use node modules, uncommment-out module
+  use normalizedPathSegList instead of my adjustPathPoint function
   separate each shape into classes
-  change function names to GPath, not SVG
   loop over an svg object instead of creating GPath data structure
 
 DEPLOYMENT
@@ -18,11 +18,11 @@ DEPLOYMENT
   domain?
 
 OPTIONS TO ADD
-  remove duplcate points
-  don't make last point when same as first point
+  reverse order of shapes
   separate shape as independent variables, not group as array
   option to not convert to path (rect, line)
-  reverse order of shapes
+  remove duplcate points
+  don't make last point when same as first point
 
 FEATURES TO ADD
   separate filename, error in GPath object
