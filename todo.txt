@@ -21,8 +21,7 @@ OPTIONS TO ADD
   don't make last point when same as first point
   separate shape as independent variables, not group as array
   option to not convert to path (rect, line)
-  
-
+  reverse order of shapes
 
 FEATURES TO ADD
   separate filename, error in GPath object

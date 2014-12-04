@@ -69,8 +69,6 @@ function extractLayer (svg_contents) {
 }
 
 function parseShape (index, svg_shape, array) {
-console.log('parseShape')
-console.dir(svg_shape)
 
   var shape_keys = {
     circle: ['cx', 'cy', 'r'],
@@ -83,16 +81,16 @@ console.dir(svg_shape)
   }
 
   var points = extractSVGpoints(svg_shape, shape_keys[svg_shape.nodeName])
-console.dir(points)
 
+console.log(svg_shape.nodeName)
   switch (svg_shape.nodeName) {
     case 'path':
-console.dir(svg_shape.pathSegList)
-      points = pathToGPath(points.d)
+      points = pathToGPath(svg_shape.pathSegList)
       break
     case 'polygon':
     case 'polyline':
 console.dir(svg_shape.points)
+console.dir(points.points)
       points = pointsToGPath(points.points)
       break
     case 'rect':
@@ -102,6 +100,7 @@ console.dir(svg_shape.points)
       points = lineToPath(points)
       break
   }
+console.dir(points)
 
   var layer = {'name': svg_shape.id, 'count': index, 'shape': svg_shape.nodeName, 'points': points}
 
@@ -130,6 +129,7 @@ function extractSVGpoints (shape, shape_key) {
   return points
 
 }
+
 
 function rectToPath (rect_dimensions) {
 
@@ -179,63 +179,51 @@ function pointsToGPath (shape_points) {
 }
 
 
-function pathToGPath (path_string) {
-
-  var segment = /([astvzqmhlc])([^astvzqmhlc]*)/ig
-  path_array = []
-  path_string.replace(segment, parseCommands)
-  return path_array
-
-}
-
-
-function parseCommands(_, command, coordinates){
-  if (command.toLowerCase() != 'z') {
-    coordinates = coordinates.match(/-?[.0-9]+(?:e[-+]?\d+)?/ig)
-    coordinates = coordinates ? coordinates.map(Number) : []
-    return path_array.push(filterPoints(command, coordinates))
+function pathToGPath(points) {
+  var gpath_array = []
+  for (var i = 0; i < points.length; i++) {
+    if (points[i].constructor.name != 'SVGPathSegClosePath') {
+      gpath_array.push(adjustPathPoint(points[i]))    
+    }
   }
+  return gpath_array
 }
 
 
-function filterPoints(command, coordinates) {
+function adjustPathPoint(point) {
   // add only x, y values
   // this is where curve control parameters are dropped
-
   var x, y
-
-  switch (command) {
+  switch (point.pathSegTypeAsLetter) {
     case 'H':
-      x = coordinates[0]
+      x = point.x
       y = last_point.y
       break
     case 'V':
       x = last_point.x
-      y = coordinates[0]
+      y = point.y
       break
     case 'h':
-      x = coordinates[0] + last_point.x
+      x = point.x + last_point.x
       y = last_point.y
       break
     case 'v':
       x = last_point.x
-      y = coordinates[0] + last_point.y
+      y = point.y + last_point.y
       break
     default:
-      x_position = coordinates.length - 2
-      y_position = coordinates.length - 1
-      x = coordinates[x_position]
-      y = coordinates[y_position]
+      x = point.x
+      y = point.y
       // adjust relative commands, not start or end
-      if (/[astvzqhlc]/.test(command)) {
+      if (/[astzqlc]/.test(point.pathSegTypeAsLetter)) {
         x += last_point.x
         y += last_point.y
       }
       break
   }
 
-  last_point = {'command': command.toUpperCase(), 'x': Number(x), 'y': Number(y)}
+  last_point = {'command': point.pathSegTypeAsLetter, 'x': Number(x), 'y': Number(y)}
 
-  return {'command': command, 'x': Number(x), 'y': Number(y)}
+  return {'command': point.pathSegTypeAsLetter, 'x': Number(x), 'y': Number(y)}
 
 }
