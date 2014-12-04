@@ -68,19 +68,7 @@ function extractLayer (svg_contents) {
 
 }
 
-function parseShape (index, svg_shape, array) {
-
-  var shape_keys = {
-    circle: ['cx', 'cy', 'r'],
-    ellipse: ['cx', 'cy', 'rx', 'ry'],
-    line: ['x1', 'y1', 'x2', 'y2'],
-    path: ['d'],
-    polygon: ['points'],
-    polyline: ['points'],
-    rect: ['x', 'y', 'height', 'width'],
-  }
-
-  var points = extractSVGpoints(svg_shape, shape_keys[svg_shape.nodeName])
+function parseShape (index, svg_shape) {
 
 console.log(svg_shape.nodeName)
   switch (svg_shape.nodeName) {
@@ -89,15 +77,19 @@ console.log(svg_shape.nodeName)
       break
     case 'polygon':
     case 'polyline':
-console.dir(svg_shape.points)
-console.dir(points.points)
-      points = pointsToGPath(points.points)
+      points = pointsToGPath(svg_shape.points)
       break
     case 'rect':
-      points = rectToPath(points)
+      points = rectToPath(svg_shape)
       break
     case 'line':
-      points = lineToPath(points)
+      points = lineToPath(svg_shape)
+      break
+    case 'ellipse':
+      points = extractSVGpoints(svg_shape, ['cx', 'cy', 'rx', 'ry'])
+      break
+    case 'circle':
+      points = extractSVGpoints(svg_shape, ['cx', 'cy', 'r'])
       break
   }
 console.dir(points)
@@ -113,7 +105,7 @@ function extractSVGpoints (shape, shape_key) {
   var points = {}
   , point
 
-  for (key in shape_key) {
+  for (var key = 0; key < shape_key.length; key++) {
     if (shape.getAttribute(shape_key[key]) == undefined) {
       point = "0"
     } else {
@@ -131,7 +123,9 @@ function extractSVGpoints (shape, shape_key) {
 }
 
 
-function rectToPath (rect_dimensions) {
+function rectToPath (rect) {
+
+  var rect_dimensions = extractSVGpoints(rect, ['x', 'y', 'height', 'width'])
 
   var x1 = rect_dimensions.x
   , y1 = rect_dimensions.y
@@ -149,7 +143,9 @@ function rectToPath (rect_dimensions) {
 
 }
 
-function lineToPath (line_dimensions) {
+function lineToPath (line) {
+
+  var line_dimensions = extractSVGpoints(line, ['x1', 'y1', 'x2', 'y2'])
 
   var points =[
     {'x': line_dimensions.x1, 'y': line_dimensions.y1},
@@ -160,22 +156,12 @@ function lineToPath (line_dimensions) {
 }
 
 
-function pointsToGPath (shape_points) {
-
-  var points = []
-  , point_split
-
-  points_array = shape_points.split(' ')
-
-  for (point in points_array) {
-    if (points_array[point].length > 1) {
-      point_split = points_array[point].split(',')
-      points.push( {'x': Number(point_split[0]), 'y': Number(point_split[1])} )
-    }
+function pointsToGPath (points) {
+  var gpath_array = []
+  for (var i = 0; i < points.length; i++) {
+      gpath_array.push(points[i])    
   }
-
-  return points
-
+  return gpath_array
 }
 
 

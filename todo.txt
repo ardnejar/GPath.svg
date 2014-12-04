@@ -7,6 +7,7 @@ REVISE/REFACTORING
   parse-svg-path! learn how to use node modules, uncommment-out module
   separate each shape into classes
   change function names to GPath, not SVG
+  loop over an svg object instead of creating GPath data structure
 
 DEPLOYMENT
   javascript how do i deal with loading multiple files in development and loading min in production?
@@ -26,7 +27,6 @@ OPTIONS TO ADD
 FEATURES TO ADD
   separate filename, error in GPath object
   separate view so it's not spread out among functions
-  loop over an svg object instead of creating GPath data structure
   make this runnable from command line (node)
   move circle, ellipse, polyline to separate variable
   come up with a useful conversion for polyline, circle and ellipse
