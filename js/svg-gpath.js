@@ -13,9 +13,10 @@ var last_point = {command: '', x: 0, y: 0}
 
 function GPathInfo (svg_document, options) {
 
-  this.svg_document = svg_document,
+  this.svg_document = svg_document
+  this.options = options
   this.gpath = parseSVG(svg_document)
-  this.text = gpathToText(this.gpath, options)
+  this.text = gpathToText(this)
 
 }
 
@@ -93,7 +94,7 @@ function parseShape (index, svg_shape) {
       break
   }
 
-  var layer = {'name': svg_shape.id, 'count': index, 'shape': svg_shape.nodeName, 'points': points}
+  var layer = {'name': svg_shape.id, 'index': index, 'shape': svg_shape.nodeName, 'points': points}
 
   return layer
 

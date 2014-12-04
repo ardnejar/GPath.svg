@@ -9,32 +9,34 @@ Rajendra Serber
 var path_count
 
 
-function gpathToText (gpathinfo, options) {
+function gpathToText (gpathinfo) {
 
   var gpathinfo_string = ''
   shapes_omited = 0
   converted_curves = 0
+  options = gpathinfo.options
   
-  gpathinfo_string += groupsToText(gpathinfo.groups, options)
+  gpathinfo_string += groupsToText(gpathinfo)
 
   return gpathinfo_string
 
 }
 
-function groupsToText (groups, options) {
+function groupsToText (gpathinfo) {
 
-  var group_string = ''
+  var groups = gpathinfo.gpath.groups
+  , group_string = ''
 
   for (var i = 0; i < groups.length; i++) {
     if (groups[i].shapes != undefined) {
-      var shape_text = shapesToText(groups[i].shapes, options)
+      var shape_text = shapesToText(groups[i].shapes)
       group_string += displayGPathInfoDeclarePathsArray(groups[i].name)
       group_string += shape_text 
       group_string += '};\n\n'
     }
   }
 
-  var group_header = options.file.name + '\n\n'
+  var group_header
   error_message = displayShapeErrors()
   if (error_message) { group_header +=  error_message + '\n' }
 
@@ -42,7 +44,7 @@ function groupsToText (groups, options) {
 
 }
 
-function shapesToText (shapes, options) {
+function shapesToText (shapes) {
 
   var shape_ponts_formated = '', 
   shape_formated = ''
@@ -55,7 +57,7 @@ function shapesToText (shapes, options) {
       shapes_omited++
     } else if ( Array.isArray(shapes[i].points) ){
       path_count++
-      shape_ponts_formated = pointsLoop(shapes[i].points, options)
+      shape_ponts_formated = pointsLoop(shapes[i].points)
       note = '[' + (path_count - 1) + '] ' + shapes[i].shape + ' ' + shapes[i].name
       shape_formated += displayGPathStructWrap(note, shape_ponts_formated, shapes[i].points.length)
       if (i < shapes.length - 1) { shape_formated += ',' }
@@ -67,12 +69,12 @@ function shapesToText (shapes, options) {
 
 }
 
-function pointsLoop (points, options) {
+function pointsLoop (points) {
 
   var points_string = ''
   
   for (var i = 0; i < points.length; i++) {
-    points_string += pointsString(points[i], options)
+    points_string += pointsString(points[i])
     if (i < points.length - 1) { points_string += ',' }
     if (points[i].command != undefined && points[i].command.toLowerCase() == 'c') {
       points_string += ' // CURVE CONVERTED'
@@ -85,13 +87,13 @@ function pointsLoop (points, options) {
 
 }
 
-function pointsString (points, options) {
+function pointsString (points) {
 
-  return '      {' + floatOption(points.x, options) + ', ' + floatOption(points.y, options) + '}'
+  return '      {' + floatOption(points.x) + ', ' + floatOption(points.y) + '}'
 
 }
 
-function floatOption (n, options) {
+function floatOption (n) {
 
   if (options.decimal != 'default') {
     n = Number(n).toFixed(options.decimal)

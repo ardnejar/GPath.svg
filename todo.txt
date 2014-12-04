@@ -4,6 +4,11 @@ TEST
   Add testing
 
 REVISE/REFACTORING
+  more OOP, interact with function like so:
+      gp = new GPathInfo(fileData.target.result)
+      gp.file = theFile
+      gp.decimal = document.getElementById('decimal').value
+      gp.parseSVG(fileData.target.result)
   parse-svg-path! learn how to use node modules, uncommment-out module
   use normalizedPathSegList instead of my adjustPathPoint function
   separate each shape into classes
