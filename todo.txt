@@ -1,4 +1,5 @@
 TEST
+  IE
   Adobe SVG versions
   Other SVG generators?
   Add testing
@@ -40,6 +41,7 @@ FEATURES TO ADD
   font to gpath
 
 WEB INTERFACE
+  style errors, file name
   toggle to hide generated code
   button to copy code
   display image by each group text (when multiple groups)

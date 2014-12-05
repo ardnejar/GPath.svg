@@ -23,14 +23,10 @@ function GPathInfo (svg_document, options) {
 
 function parseSVG (svg_document) {
 
-  var groups_object = {
-    'groups': []
-  }
-
+  var groups_object = { 'groups': [] }
   , parsed_svg = $.parseXML(svg_document)
   , svg_contents = $(parsed_svg).find('svg')
   , groups_xml = svg_contents.find('g')
-
 
   if (groups_xml.length) {
     for (var i = 0; i < groups_xml.length; i++) {
@@ -48,11 +44,21 @@ function parseSVG (svg_document) {
 }
 
 function parseGroups (group_contents) {
-  
-  var group_object = {'name': group_contents.id}
 
-  if (group_contents.childElementCount > 0) {
-    group_object.shapes = extractLayer(group_contents.children)
+  var group_object = {'name': group_contents.id}
+  , group_family = {}
+  , group = group_contents.firstElementChild
+  , i = 0
+  
+  // hack to workaround IE and Safari lack of support for SVGElement.children // TODO: Check on IE
+  while (group != null) {
+    group_family[i++] = group
+    group = group.nextElementSibling
+  }
+  group_family.length = i
+
+  if (group_family.length > 0) {
+    group_object.shapes = extractLayer(group_family)
   }
 
   return group_object
@@ -82,10 +88,10 @@ function parseShape (index, svg_shape) {
       points = pointsToGPath(svg_shape.points)
       break
     case 'rect':
-      points = rectToPath(svg_shape)
+      points = rectToGPath(svg_shape)
       break
     case 'line':
-      points = lineToPath(svg_shape)
+      points = lineToGPath(svg_shape)
       break
     case 'ellipse':
       points = extractSVGpoints(svg_shape, ['cx', 'cy', 'rx', 'ry'])
@@ -124,7 +130,7 @@ function extractSVGpoints (shape, shape_key) {
 }
 
 
-function rectToPath (rect) {
+function rectToGPath (rect) {
 
   var rect_dimensions = extractSVGpoints(rect, ['x', 'y', 'height', 'width'])
 
@@ -144,7 +150,7 @@ function rectToPath (rect) {
 
 }
 
-function lineToPath (line) {
+function lineToGPath (line) {
 
   var line_dimensions = extractSVGpoints(line, ['x1', 'y1', 'x2', 'y2'])
 
