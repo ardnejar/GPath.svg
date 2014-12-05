@@ -90,7 +90,8 @@ function extractLayer (svg_contents) {
 }
 
 function parseShape (index, svg_shape) {
-
+  var points
+  
   switch (svg_shape.nodeName) {
     case 'path':
       points = pathToGPath(svg_shape.pathSegList)
@@ -125,7 +126,7 @@ function extractSVGpoints (shape, shape_key) {
   , point
 
   for (var key = 0; key < shape_key.length; key++) {
-    if (shape.getAttribute(shape_key[key]) == undefined) {
+    if (shape.getAttribute(shape_key[key]) === undefined) {
       point = "0"
     } else {
       point = shape.getAttribute(shape_key[key])
@@ -187,7 +188,7 @@ function pointsToGPath (points) {
 function pathToGPath(points) {
   var gpath_array = []
   for (var i = 0; i < points.numberOfItems; i++) {
-    if (points.getItem(i).constructor != SVGPathSegClosePath) {
+    if (points.getItem(i).constructor !== SVGPathSegClosePath) {
       gpath_array.push(adjustPathPoint(points.getItem(i)))    
     }
   }

@@ -38,13 +38,15 @@ module.exports = function(grunt) {
     },
     jshint: {
       options: {
+        asi: true,
         curly: true,
         eqeqeq: true,
         immed: true,
-        latedef: true,
+        latedef: false,
         newcap: true,
         noarg: true,
         multistr: true,
+        laxcomma: true,
         sub: true,
         undef: true,
         unused: true,
@@ -55,6 +57,7 @@ module.exports = function(grunt) {
           jQuery: true
         }
       },
+      uses_defaults: ['src/*.js'],
       gruntfile: {
         src: 'Gruntfile.js'
       }

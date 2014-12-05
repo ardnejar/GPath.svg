@@ -86,7 +86,8 @@ function extractLayer (svg_contents) {
 }
 
 function parseShape (index, svg_shape) {
-
+  var points
+  
   switch (svg_shape.nodeName) {
     case 'path':
       points = pathToGPath(svg_shape.pathSegList)
@@ -121,7 +122,7 @@ function extractSVGpoints (shape, shape_key) {
   , point
 
   for (var key = 0; key < shape_key.length; key++) {
-    if (shape.getAttribute(shape_key[key]) == undefined) {
+    if (shape.getAttribute(shape_key[key]) === undefined) {
       point = "0"
     } else {
       point = shape.getAttribute(shape_key[key])
@@ -183,7 +184,7 @@ function pointsToGPath (points) {
 function pathToGPath(points) {
   var gpath_array = []
   for (var i = 0; i < points.numberOfItems; i++) {
-    if (points.getItem(i).constructor != SVGPathSegClosePath) {
+    if (points.getItem(i).constructor !== SVGPathSegClosePath) {
       gpath_array.push(adjustPathPoint(points.getItem(i)))    
     }
   }
@@ -251,7 +252,7 @@ function groupsToText (gpathinfo) {
   , group_string = ''
 
   for (var i = 0; i < groups.length; i++) {
-    if (groups[i].shapes != undefined) {
+    if (groups[i].shapes !== undefined) {
       var shape_text = shapesToText(groups[i].shapes)
       group_string += displayGPathInfoDeclarePathsArray(groups[i].name)
       group_string += shape_text 
@@ -265,13 +266,14 @@ function groupsToText (gpathinfo) {
 
 function shapesToText (shapes) {
 
-  var shape_ponts_formated = '', 
-  shape_formated = ''
+  var shape_ponts_formated = ''
+  , shape_formated = ''
+  , note
   
   path_count = 0
   
   for (var i = 0; i < shapes.length; i++) {
-    if (shapes[i].shape == 'circle' || shapes[i].shape == 'ellipse' || shapes[i].shape == 'polyline') {
+    if (shapes[i].shape === 'circle' || shapes[i].shape === 'ellipse' || shapes[i].shape === 'polyline') {
       shape_formated += '  // ' + shapes[i].shape.toUpperCase() + ' OMITTED\n'
       shapes_omited++
     } else if ( Array.isArray(shapes[i].points) ){
@@ -295,7 +297,7 @@ function pointsLoop (points) {
   for (var i = 0; i < points.length; i++) {
     points_string += pointsString(points[i])
     if (i < points.length - 1) { points_string += ',' }
-    if (points[i].command != undefined 
+    if (points[i].command !== undefined 
         && /[astqc]/.test(points[i].command.toLowerCase())
     ) {
       points_string += ' // CURVE CONVERTED'
@@ -316,7 +318,7 @@ function pointsString (points) {
 
 function floatOption (n) {
 
-  if (options.decimal != 'default') {
+  if (options.decimal !== 'default') {
     n = Number(n).toFixed(options.decimal)
   }
 

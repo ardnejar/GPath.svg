@@ -28,7 +28,7 @@ function groupsToText (gpathinfo) {
   , group_string = ''
 
   for (var i = 0; i < groups.length; i++) {
-    if (groups[i].shapes != undefined) {
+    if (groups[i].shapes !== undefined) {
       var shape_text = shapesToText(groups[i].shapes)
       group_string += displayGPathInfoDeclarePathsArray(groups[i].name)
       group_string += shape_text 
@@ -42,13 +42,14 @@ function groupsToText (gpathinfo) {
 
 function shapesToText (shapes) {
 
-  var shape_ponts_formated = '', 
-  shape_formated = ''
+  var shape_ponts_formated = ''
+  , shape_formated = ''
+  , note
   
   path_count = 0
   
   for (var i = 0; i < shapes.length; i++) {
-    if (shapes[i].shape == 'circle' || shapes[i].shape == 'ellipse' || shapes[i].shape == 'polyline') {
+    if (shapes[i].shape === 'circle' || shapes[i].shape === 'ellipse' || shapes[i].shape === 'polyline') {
       shape_formated += '  // ' + shapes[i].shape.toUpperCase() + ' OMITTED\n'
       shapes_omited++
     } else if ( Array.isArray(shapes[i].points) ){
@@ -72,7 +73,7 @@ function pointsLoop (points) {
   for (var i = 0; i < points.length; i++) {
     points_string += pointsString(points[i])
     if (i < points.length - 1) { points_string += ',' }
-    if (points[i].command != undefined 
+    if (points[i].command !== undefined 
         && /[astqc]/.test(points[i].command.toLowerCase())
     ) {
       points_string += ' // CURVE CONVERTED'
@@ -93,7 +94,7 @@ function pointsString (points) {
 
 function floatOption (n) {
 
-  if (options.decimal != 'default') {
+  if (options.decimal !== 'default') {
     n = Number(n).toFixed(options.decimal)
   }
 
