@@ -72,7 +72,9 @@ function pointsLoop (points) {
   for (var i = 0; i < points.length; i++) {
     points_string += pointsString(points[i])
     if (i < points.length - 1) { points_string += ',' }
-    if (points[i].command != undefined && points[i].command.toLowerCase() == 'c') {
+    if (points[i].command != undefined 
+        && /[astqc]/.test(points[i].command.toLowerCase())
+    ) {
       points_string += ' // CURVE CONVERTED'
       converted_curves++
     }
