@@ -7,10 +7,10 @@ Rajendra Serber
 
 This script takes a standard SVG file and coverts it to a Pebble GPathInfo array that can be drawn with gpath_draw_filled or gpath_draw_outline. SVGs with multiple shapes will have each shape as an item in the GPathInfo array. Each SVG group will be a separate GPathInfo array.
 
-Some primitive shape types are converted to paths. Rects and Lines can be drawn by gpath draw when they are converted.
+Some primitive shape types are converted to paths. Rects and Lines can be drawn by Pebble when they are converted to paths.
 
 **Rounding**
-Before you select the the file for conversion you can choose the level of rounding. Pebble doesn't have hardware accelerated floating point math, so avoiding floats where possible saves processing and therefor battery. 
+Before you select the the file for conversion you can choose the level of rounding. Pebble doesn't have hardware accelerated floating point math, so avoiding floats where possible saves processing and therefor battery.
 
 ##Limitations##
 
