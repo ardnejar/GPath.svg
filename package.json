@@ -6,7 +6,7 @@
   "author": "Rajendra Serber",
   "homepage": "https://github.com/ardnejar/GPath.svg.git",
   "repository": "https://github.com/ardnejar/GPath.svg.git",
-  "bugs": "https://github.com/ardnejar/GPath.svg.git",
+  "bugs": "https://github.com/ardnejar/GPath.svg/issues",
   "files": ["?"],
   "license": "MIT",
   "engines": {
