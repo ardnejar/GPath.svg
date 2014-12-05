@@ -17,6 +17,8 @@ Currently the only option that GPath.svg takes is "decimal." This allows you to 
 The current version drops any shapes that can't natively be drawn as a path on Pebble. Circles, Elipses and Polyline shapes can't be natively drawn by gpath draw. The curve data of paths is also dropped, leaving only the curves x and y values. Comments are added in place of the omitted data.
 
 ##How To Use##
+How to coming soon.
+Go to // to run in browser
 Dependent on JQueary for xml parsing.
 
 ##Contribute##
