@@ -5,11 +5,12 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
-      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
-      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
-      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
-      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+    banner: '/*\n\
+  <%= pkg.title || pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n\
+  <%= pkg.homepage %>\n\
+  Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n\
+  Licensed under <%= pkg.license %> license\n\
+*/\n',
     // Task configuration.
     concat: {
       options: {
@@ -38,6 +39,7 @@ module.exports = function(grunt) {
         latedef: true,
         newcap: true,
         noarg: true,
+        multistr: true,
         sub: true,
         undef: true,
         unused: true,
@@ -50,7 +52,7 @@ module.exports = function(grunt) {
       },
       gruntfile: {
         src: 'Gruntfile.js'
-      },
+      }
     },
     watch: {
       gruntfile: {

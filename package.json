@@ -4,8 +4,9 @@
   "description": "Convert SVG to Pebble GPath C code, for inclusion in Pebble C apps.",
   "keywords": ["SVG","Pebble", "GPath", "GPathInfo"],
   "author": "Rajendra Serber",
+  "homepage": "https://github.com/ardnejar/GPath.svg.git",
   "repository": "https://github.com/ardnejar/GPath.svg.git",
-  "bugs": "",
+  "bugs": "https://github.com/ardnejar/GPath.svg.git",
   "files": ["?"],
   "license": "MIT",
   "engines": {
