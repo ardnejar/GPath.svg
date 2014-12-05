@@ -36,11 +36,7 @@ function groupsToText (gpathinfo) {
     }
   }
 
-  var group_header
-  error_message = displayShapeErrors()
-  if (error_message) { group_header +=  error_message + '\n' }
-
-  return group_header + group_string
+  return group_string
 
 }
 
@@ -127,7 +123,9 @@ function displayShapeErrors () {
   if (error_messages.length > 0) { 
     error_message = error_messages.join(', ') + '!\n' 
     return error_message
-  }  
+  } else {
+    return ''
+  }
   
 }
 

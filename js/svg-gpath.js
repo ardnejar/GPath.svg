@@ -17,6 +17,7 @@ function GPathInfo (svg_document, options) {
   this.options = options
   this.gpath = parseSVG(svg_document)
   this.text = gpathToText(this)
+  this.errors = displayShapeErrors()
 
 }
 

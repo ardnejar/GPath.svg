@@ -30,7 +30,6 @@ OPTIONS TO ADD
   don't make last point when same as first point
 
 FEATURES TO ADD
-  separate filename, error in GPath object
   separate view so it's not spread out among functions
   make this runnable from command line (node)
   move circle, ellipse, polyline to separate variable

@@ -53,5 +53,5 @@ function displayGPathInfo(theFile, fileData) {
               'decimal': document.getElementById('decimal').value,
             })
 
-  return [theFile.name + '<br>\n' + gp.errors + '<br>\n' + '<pre>' + gp.text + '</pre>']
+  return ['<h2>' + theFile.name + '</h2>\n' + gp.errors + '<br>\n' + '<pre>' + gp.text + '</pre>']
 }
