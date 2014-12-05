@@ -46,16 +46,7 @@ function parseSVG (svg_document) {
 function parseGroups (group_contents) {
 
   var group_object = {'name': group_contents.id}
-  , group_family = {}
-  , group = group_contents.firstElementChild
-  , i = 0
-  
-  // hack to workaround IE and Safari lack of support for SVGElement.children // TODO: Check on IE
-  while (group != null) {
-    group_family[i++] = group
-    group = group.nextElementSibling
-  }
-  group_family.length = i
+  , group_family = countChildren(group_contents)
 
   if (group_family.length > 0) {
     group_object.shapes = extractLayer(group_family)
@@ -64,6 +55,27 @@ function parseGroups (group_contents) {
   return group_object
 
 }
+
+
+function countChildren (obj) {
+  /*
+    hack to workaround IE and Safari lack of support for SVGElement.children 
+    TODO: Check on IE
+  */
+
+  var element_children = {}
+  , current_child = obj.firstElementChild
+  , i = 0
+  
+  while (current_child != null) {
+    element_children[i++] = current_child
+    current_child = current_child.nextElementSibling
+  }
+  element_children.length = i
+  
+  return element_children
+}
+
 
 function extractLayer (svg_contents) {
 
