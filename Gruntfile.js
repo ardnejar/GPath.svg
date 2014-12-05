@@ -1,16 +1,19 @@
 /*global module:false*/
+
 module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    banner: '/*\n\
+    banner: '/*!\n\
   <%= pkg.title || pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %>\n\
   <%= pkg.homepage %>\n\
   Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author %>\n\
   Licensed under <%= pkg.license %> license\n\
 */\n',
+    // variables
+    concatenate_target: 'dist/<%= pkg.name.toLowerCase() %>.js',
     // Task configuration.
     concat: {
       options: {
@@ -18,8 +21,9 @@ module.exports = function(grunt) {
         stripBanners: true
       },
       dist: {
-        src: ['src/*.js'],
-        dest: 'dist/<%= pkg.name.toLowerCase() %>.js'
+        files: {
+          '<%= concatenate_target %>': ['src/*.js'],
+        }
       }
     },
     uglify: {
@@ -27,8 +31,9 @@ module.exports = function(grunt) {
         banner: '<%= banner %>'
       },
       dist: {
-        src: '<%= concat.dist.dest %>',
-        dest: 'dist/<%= pkg.name.toLowerCase() %>.min.js'
+        files: {
+          'dist/<%= pkg.name.toLowerCase() %>.min.js': ['<%= concatenate_target %>'],
+        }
       }
     },
     jshint: {
