@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Gpath.svg by ardnejar</title>
+    <title>Gpath.svg</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
@@ -17,17 +17,28 @@
       <header>
         <h1>Gpath.svg</h1>
         <p>Convert SVG to Pebble GPathInfo array</p>
+        <p class="view"><a href="https://github.com/ardnejar/GPath.svg">View, Fork, Blame this project on GitHub</a></p>
 
-        <p class="view"><a href="https://github.com/ardnejar/GPath.svg">View the Project on GitHub <small>ardnejar/GPath.svg</small></a></p>
+        <form role="form">
+          <div class="form-group">
+            <label for="decimal">Round</label>
+            <select id="decimal" name="decimal">
+              <option value="default">default</option>
+              <option value="0" selected="true">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="file">Select SVG</label>
+            <input type="file" id="files" name="files[]" />
+          </div>
+        </form>
 
-
-        <ul>
-          <li><a href="https://github.com/ardnejar/GPath.svg/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/ardnejar/GPath.svg/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/ardnejar/GPath.svg">View On <strong>GitHub</strong></a></li>
-        </ul>
       </header>
-      <section>
+      <section id="output"></section>
+      <section id="about">
         <h1>
 <a id="svg-to-pebble-gpath-converter" class="anchor" href="#svg-to-pebble-gpath-converter" aria-hidden="true"><span class="octicon octicon-link"></span></a>SVG to Pebble GPath Converter</h1>
 
@@ -64,21 +75,24 @@ Dependent on JQueary for xml parsing.</p>
 <p>There is lots of room for improvement here. If you want to make this better please fork this repository and make a <a href="https://help.github.com/articles/using-pull-requests">pull requests</a>. Every sensible change will be merged.</p>
       </section>
       <footer>
-        <p>This project is maintained by <a href="https://github.com/ardnejar">ardnejar</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        <p></p>
+        <p><small>Maintained by <a href="https://github.com/ardnejar">Rajendra Serber</a> on GitHub Pages &mdash; Based on theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
+    <script src="javascripts/jquery.min.js"></script>
     <script src="javascripts/scale.fix.js"></script>
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-41475856-3");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
+    <script src="javascripts/file-handler.js"></script>
+    <script src="javascripts/gpath.svg.min.js"></script>
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-41475856-3");
+      pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
 
   </body>
 </html>
