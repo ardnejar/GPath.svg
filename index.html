@@ -17,13 +17,12 @@
       <header>
         <h1>Gpath.svg</h1>
         <p>Convert SVG to Pebble GPathInfo array</p>
-        <p class="view"><a href="https://github.com/ardnejar/GPath.svg">View, Fork, Blame this project on GitHub</a></p>
 
         <form role="form">
           <div class="form-group">
             <label for="decimal">Round</label>
             <select id="decimal" name="decimal">
-              <option value="default">default</option>
+              <option value="none">none</option>
               <option value="0" selected="true">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -53,21 +52,14 @@ Rajendra Serber</p>
 <p>Some primitive shape types are converted to paths. Rects and Lines can be drawn by Pebble when they are converted to paths.</p>
 
 <p><strong>Rounding</strong>
-Currently the only option that GPath.svg takes is "decimal." This allows you to set how many decimal places the points are rounded to. Pebble doesn't have hardware accelerated floating point math, so avoiding floats where possible saves processing and therefor battery.</p>
+Pebble doesn't have hardware accelerated floating point math, so avoiding floats where possible saves processing and therefor battery. By default the points are rounded to 0 decimal. Before you select your SVG file for conversion you can change your rounding preference. "None" will make it not rounded, but the addition function of JavaScript wil make relative points unreasonably long.</p>
 
 <h3>
 <a id="limitations" class="anchor" href="#limitations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limitations</h3>
 
 <p>The current version drops any shapes that can't natively be drawn as a path on Pebble. Circles, Elipses and Polyline shapes can't be natively drawn by gpath draw. The curve data of paths is also dropped, leaving only the curves x and y values. Comments are added in place of the omitted data.</p>
 
-<p>This has only been tested in the latest versions of Chrome, Firefox, Safari (and should work in IE). There is no support for older browser planned.</p>
-
-<h3>
-<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How To Use</h3>
-
-<p>How to coming soon...<br>
-Go to // to run in browser
-Dependent on JQueary for xml parsing.</p>
+<p>This has only been tested in the latest versions of Chrome, Firefox, Safari and Internet Explorer. There is no support for older browsers planned.</p>
 
 <h3>
 <a id="contribute" class="anchor" href="#contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contribute</h3>
@@ -76,7 +68,7 @@ Dependent on JQueary for xml parsing.</p>
       </section>
       <footer>
         <p></p>
-        <p><small>Maintained by <a href="https://github.com/ardnejar">Rajendra Serber</a> on GitHub Pages &mdash; Based on theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        <p class="view"><a href="https://github.com/ardnejar/GPath.svg">View, Fork, Blame this project on <strong>GitHub</strong></a></p>
       </footer>
     </div>
     <script src="javascripts/jquery.min.js"></script>
