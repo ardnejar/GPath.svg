@@ -51,7 +51,7 @@ Rajendra Serber</p>
 
 <p>This script takes a standard SVG file and coverts it to a Pebble GPathInfo array that can be drawn with gpath_draw_filled or gpath_draw_outline. SVGs with multiple shapes will have each shape as an item in the GPathInfo array. Each SVG group will be a separate GPathInfo array.</p>
 
-<p>Some primitive shape types are converted to paths. Rects and Lines can be drawn by Pebble when they are converted to paths.</p>
+<p>Some primitive shape types are converted to paths. Rects, Lines and Polygons can be drawn by Pebble when they are converted to paths. (There is a bug that prevents Polygons from being converted in Safari and Internet Explorer.)</p>
 
 <p><strong>Rounding</strong><br>
 Before you select your SVG file for conversion you can change your rounding preference. "None" will make it not rounded, but the addition function of JavaScript wil make relative points unreasonably long. Pebble doesn't have hardware accelerated floating point math, so avoiding floats where possible saves processing and therefor battery.</p>
