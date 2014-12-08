@@ -73,8 +73,8 @@ function pointsLoop (points) {
   for (var i = 0; i < points.length; i++) {
     points_string += pointsString(points[i])
     if (i < points.length - 1) { points_string += ',' }
-    if (points[i].command !== undefined 
-        && /[astqc]/.test(points[i].command.toLowerCase())
+    if (points[i].command !== undefined &&
+        /[astqc]/.test(points[i].command.toLowerCase())
     ) {
       points_string += ' // CURVE CONVERTED'
       converted_curves++
@@ -94,7 +94,7 @@ function pointsString (points) {
 
 function floatOption (n) {
 
-  if (options.decimal !== 'default') {
+  if (options.decimal !== 'none') {
     n = Number(n).toFixed(options.decimal)
   }
 
@@ -124,7 +124,7 @@ function displayShapeErrors () {
   if (converted_curves > 0) { error_messages.push( converted_curves + ' CURVES CONVERTED' ) }
 
   if (error_messages.length > 0) { 
-    error_message = error_messages.join(', ') + '!\n' 
+    error_message = error_messages.join('!<br>\n') + '!\n' 
     return error_message
   } else {
     return ''
