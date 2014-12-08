@@ -50,8 +50,8 @@ function displayGPathInfo(theFile, fileData) {
             })
 
   display = '<h2>' + theFile.name + '</h2>\n' + 
-  fileData.target.result + '\n'
-  if (gp.errors != '') { display += '<span id="errors">' + gp.errors + '</span><br>\n' }
+  '<span class="preview">' + fileData.target.result + '</span>\n'
+  if (gp.errors != '') { display += '<div id="error">' + gp.errors + '</div>\n' }
   display += '<pre>' + gp.text + '</pre>'
 
   return display // ['<h2>' + theFile.name + '</h2>\n' + gp.errors + '<br>\n' + '<pre>' + gp.text + '</pre>']
