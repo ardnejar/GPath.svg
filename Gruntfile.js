@@ -23,6 +23,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           '<%= concatenate_target %>': ['src/*.js'],
+          '../gpath/js/<%= pkg.name.toLowerCase() %>.js': ['src/*.js']
         }
       }
     },
@@ -33,7 +34,9 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'dist/<%= pkg.name.toLowerCase() %>.min.js': ['<%= concatenate_target %>'],
-        }
+          '../gpath/js/<%= pkg.name.toLowerCase() %>.min.js': ['<%= concatenate_target %>'],
+          '../gpath-ghp/javascripts/<%= pkg.name.toLowerCase() %>.min.js': ['<%= concatenate_target %>']
+       }
       }
     },
     jshint: {
@@ -48,8 +51,8 @@ module.exports = function(grunt) {
         multistr: true,
         laxcomma: true,
         sub: true,
-        undef: true,
-        unused: true,
+        undef: false,
+        unused: false, // TODO: figure out how to make unused cross check all files?
         boss: true,
         eqnull: true,
         browser: true,
