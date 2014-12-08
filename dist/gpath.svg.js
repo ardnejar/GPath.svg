@@ -1,5 +1,5 @@
 /*!
-  GPath.svg - v0.1.0 - 2014-12-05
+  GPath.svg - v0.1.0 - 2014-12-08
   https://github.com/ardnejar/GPath.svg.git
   Copyright (c) 2014 Rajendra Serber
   Licensed under MIT license
@@ -42,7 +42,7 @@ function parseSVG (svg_document) {
 function parseGroups (group_contents) {
 
   var group_object = {'name': group_contents.id}
-  , group_family = countChildren(group_contents)
+  , group_family = getChildren(group_contents)
 
   if (group_family.length > 0) {
     group_object.shapes = extractLayer(group_family)
@@ -53,7 +53,7 @@ function parseGroups (group_contents) {
 }
 
 
-function countChildren (obj) {
+function getChildren (obj) {
   /*
     hack to workaround IE and Safari lack of support for SVGElement.children 
     TODO: Check on IE
@@ -86,8 +86,10 @@ function extractLayer (svg_contents) {
 }
 
 function parseShape (index, svg_shape) {
+console.log(svg_shape.nodeName)
+console.dir(svg_shape)
+console.dir(svg_shape.SVGPointList)
   var points
-  
   switch (svg_shape.nodeName) {
     case 'path':
       points = pathToGPath(svg_shape.pathSegList)
@@ -297,8 +299,8 @@ function pointsLoop (points) {
   for (var i = 0; i < points.length; i++) {
     points_string += pointsString(points[i])
     if (i < points.length - 1) { points_string += ',' }
-    if (points[i].command !== undefined 
-        && /[astqc]/.test(points[i].command.toLowerCase())
+    if (points[i].command !== undefined &&
+        /[astqc]/.test(points[i].command.toLowerCase())
     ) {
       points_string += ' // CURVE CONVERTED'
       converted_curves++
@@ -318,7 +320,7 @@ function pointsString (points) {
 
 function floatOption (n) {
 
-  if (options.decimal !== 'default') {
+  if (options.decimal !== 'none') {
     n = Number(n).toFixed(options.decimal)
   }
 
@@ -348,7 +350,7 @@ function displayShapeErrors () {
   if (converted_curves > 0) { error_messages.push( converted_curves + ' CURVES CONVERTED' ) }
 
   if (error_messages.length > 0) { 
-    error_message = error_messages.join(', ') + '!\n' 
+    error_message = error_messages.join('!<br>\n') + '!\n' 
     return error_message
   } else {
     return ''

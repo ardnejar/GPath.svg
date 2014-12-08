@@ -46,7 +46,7 @@ function parseSVG (svg_document) {
 function parseGroups (group_contents) {
 
   var group_object = {'name': group_contents.id}
-  , group_family = countChildren(group_contents)
+  , group_family = getChildren(group_contents)
 
   if (group_family.length > 0) {
     group_object.shapes = extractLayer(group_family)
@@ -57,7 +57,7 @@ function parseGroups (group_contents) {
 }
 
 
-function countChildren (obj) {
+function getChildren (obj) {
   /*
     hack to workaround IE and Safari lack of support for SVGElement.children 
     TODO: Check on IE
@@ -91,7 +91,6 @@ function extractLayer (svg_contents) {
 
 function parseShape (index, svg_shape) {
   var points
-  
   switch (svg_shape.nodeName) {
     case 'path':
       points = pathToGPath(svg_shape.pathSegList)
