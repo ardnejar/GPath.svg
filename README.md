@@ -16,12 +16,15 @@ Currently the only option that GPath.svg takes is "decimal." This allows you to 
 
 The current version drops any shapes that can't natively be drawn as a path on Pebble. Circles, Elipses and Polyline shapes can't be drawn by `gpath_draw_*`. The curve data of paths is also dropped, leaving only the curve's x and y values. Comments are added in place of the omitted data.
 
-This has only been tested in the latest versions of Chrome, Firefox, Safari (and should work in IE). There is no support for older browser planned.
+This has only been tested in the latest versions of Chrome, Firefox, Safari  and Internet Explorer. There is no support for older browsers planned.
 
 ###How To Use###
-How to coming soon...  
-Go to // to run in browser
-Dependent on JQueary for xml parsing.
+First go to [GPathSVG.org](http://gpathsvg.org) and try it out in your browser.
+
+If you just want to include this function in your project you can download the minefield version from the source folder in the repository. Not that it is dependent on JQueary for xml parsing.
+
+Documentation for integration into your JavaScript to coming later... 
+
 
 ###Contribute###
 
