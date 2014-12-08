@@ -9,7 +9,7 @@ This script takes a standard SVG file and coverts it to a Pebble GPathInfo array
 
 Some primitive shape types are converted to paths. Rects and Lines can be drawn by Pebble when they are converted to paths.
 
-**Rounding**
+**Rounding**  
 Currently the only option that GPath.svg takes is "decimal." This allows you to set how many decimal places the points are rounded to. Pebble doesn't have hardware accelerated floating point math, so avoiding floats where possible saves processing and therefor battery.
 
 ###Limitations###
