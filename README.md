@@ -5,7 +5,7 @@ Rajendra Serber
 
 ###What It Does###
 
-This script takes a standard SVG file and coverts it to a Pebble GPathInfo array that can be drawn with `gpath_draw_filled` or `gpath_draw_outline`. SVGs with multiple shapes will have each shape as an item in the GPathInfo array. Each SVG group will be a separate GPathInfo array.
+This script takes a standard SVG file and coverts it to a Pebble GPathInfo array that can be drawn with [`gpath_draw_filled`](http://developer.getpebble.com/docs/c/group___path_drawing.html) or [`gpath_draw_outline`](http://developer.getpebble.com/docs/c/group___path_drawing.html). SVGs with multiple shapes will have each shape as an item in the GPathInfo array. Each SVG group will be a separate GPathInfo array.
 
 Some primitive shape types are converted to paths. Rects and Lines can be drawn by Pebble when they are converted to paths.
 
@@ -14,9 +14,9 @@ Currently the only option that GPath.svg takes is "decimal." This allows you to 
 
 ###Limitations###
 
-The current version drops any shapes that can't natively be drawn as a path on Pebble. Circles, Elipses and Polyline shapes can't be drawn by `gpath_draw_*`. The curve data of paths is also dropped, leaving only the curve's x and y values. Comments are added in place of the omitted data.
+The current version drops any shapes that can't natively be drawn as a path on Pebble. Circles, Elipses and Polyline shapes can't be drawn by [`gpath_draw_*`](http://developer.getpebble.com/docs/c/group___path_drawing.html). The curve data of paths is also dropped, leaving only the curve's x and y values. Comments are added in place of the omitted data.
 
-This has only been tested in the latest versions of Chrome, Firefox, Safari  and Internet Explorer. There is no support for older browsers planned.
+This has only been tested in the latest versions of Chrome, Firefox, Safari and Internet Explorer. There is no support for older browsers planned.
 
 ###How To Use###
 First try it out in your browser at [GPathSVG.org](http://gpathsvg.org).
