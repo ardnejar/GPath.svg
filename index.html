@@ -49,7 +49,7 @@ Rajendra Serber</p>
 <h3>
 <a id="what-it-does" class="anchor" href="#what-it-does" aria-hidden="true"><span class="octicon octicon-link"></span></a>What It Does</h3>
 
-<p>This script takes a standard SVG file and coverts it to a Pebble GPathInfo array that can be drawn with gpath_draw_filled or gpath_draw_outline. SVGs with multiple shapes will have each shape as an item in the GPathInfo array. Each SVG group will be a separate GPathInfo array.</p>
+<p>This script takes a standard SVG file and coverts it to a Pebble GPathInfo array that can be drawn with <a href="http://developer.getpebble.com/docs/c/group___path_drawing.html"><code>gpath_draw_filled</code></a> or <a href="http://developer.getpebble.com/docs/c/group___path_drawing.html"><code>gpath_draw_outline</code></a>. SVGs with multiple shapes will have each shape as an item in the GPathInfo array. Each SVG group will be a separate GPathInfo array.</p>
 
 <p>Some primitive shape types are converted to paths. Rects, Lines and Polygons can be drawn by Pebble when they are converted to paths. (There is a bug that prevents Polygons from being converted in Safari and Internet Explorer.)</p>
 
@@ -59,7 +59,7 @@ Before you select your SVG file for conversion you can change your rounding pref
 <h3>
 <a id="limitations" class="anchor" href="#limitations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limitations</h3>
 
-<p>The current version drops any shapes that can't natively be drawn as a path on Pebble. Circles, Elipses and Polyline shapes can't be natively drawn by gpath draw. The curve data of paths is also dropped, leaving only the curve's x and y values. Comments are added in place of the omitted data.</p>
+<p>The current version drops any shapes that can't natively be drawn as a path on Pebble. Circles, Elipses and Polyline shapes can't be natively drawn by <a href="http://developer.getpebble.com/docs/c/group___path_drawing.html"><code>gpath_draw_*</code></a>. The curve data of paths is also dropped, leaving only the curve's x and y values. Comments are added in place of the omitted data.</p>
 
 <p><strong>This has only been tested in the latest versions of Chrome, Firefox, Safari and Internet Explorer.</strong> There is no support for older browsers planned.</p>
 
