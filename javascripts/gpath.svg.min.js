@@ -1,5 +1,5 @@
 /*!
-  GPath.svg - v0.1.0 - 2014-12-08
+  GPath.svg - v0.1.0 - 2014-12-19
   https://github.com/ardnejar/GPath.svg.git
   Copyright (c) 2014 Rajendra Serber
   Licensed under MIT license
