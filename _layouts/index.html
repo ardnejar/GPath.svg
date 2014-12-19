@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Gpath.svg</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/gpath.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Gpath.svg</h1>
+        <p>Convert SVG to Pebble GPathInfo array</p>
+
+        <form role="form">
+          <div class="form-group">
+            <label for="decimal">Round</label>
+            <select id="decimal" name="decimal">
+              <option value="none">none</option>
+              <option value="0" selected="true">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="file">Select SVG</label>
+            <input type="file" id="files" name="files[]" />
+          </div>
+        </form>
+        <p><small>Files are processed in your browser. No data is collected.</small></p>
+
+      </header>
+      <section id="output"></section>
+      <section id="{{ page.id }}">
+        <h1>{{ page.title }}</h1>
+        {{ content }}
+      </section>
+
+      <footer>
+        <p></p>
+        <p class="view"><a href="https://github.com/ardnejar/GPath.svg">View, Fork, Blame this project on <strong>GitHub</strong></a></p>
+      </footer>
+    </div>
+
+    <script src="javascripts/jquery.min.js"></script>
+    <script src="javascripts/scale.fix.js"></script>
+    <script src="javascripts/file-handler.js"></script>
+    <script src="javascripts/gpath.svg.min.js"></script>
+    <script type="text/javascript">
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+      try {
+        var pageTracker = _gat._getTracker("UA-41475856-3");
+      pageTracker._trackPageview();
+      } catch(err) {}
+    </script>
+
+  </body>
+</html>
