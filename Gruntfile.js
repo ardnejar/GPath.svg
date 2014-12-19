@@ -13,7 +13,7 @@ module.exports = function(grunt) {
   Licensed under <%= pkg.license %> license\n\
 */\n',
     // variables
-    concatenate_target: 'dist/<%= pkg.name.toLowerCase() %>.js',
+    concatenate_target: 'distribution/<%= pkg.name.toLowerCase() %>.js',
     // Task configuration.
     concat: {
       options: {
@@ -22,8 +22,8 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          '<%= concatenate_target %>': ['src/*.js'],
-          '../gpath/js/<%= pkg.name.toLowerCase() %>.js': ['src/*.js']
+          '<%= concatenate_target %>': ['source/*.js'],
+          '../gpath/js/<%= pkg.name.toLowerCase() %>.js': ['source/*.js']
         }
       }
     },
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
       },
       dist: {
         files: {
-          'dist/<%= pkg.name.toLowerCase() %>.min.js': ['<%= concatenate_target %>'],
+          'distribution/<%= pkg.name.toLowerCase() %>.min.js': ['<%= concatenate_target %>'],
           '../gpath/js/<%= pkg.name.toLowerCase() %>.min.js': ['<%= concatenate_target %>'],
           '../gpath-ghp/javascripts/<%= pkg.name.toLowerCase() %>.min.js': ['<%= concatenate_target %>']
        }
@@ -60,7 +60,7 @@ module.exports = function(grunt) {
           jQuery: true
         }
       },
-      uses_defaults: ['src/*.js'],
+      uses_defaults: ['source/*.js'],
       gruntfile: {
         src: 'Gruntfile.js'
       }

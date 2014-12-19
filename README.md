@@ -21,7 +21,7 @@ This has only been tested in the latest versions of Chrome, Firefox, Safari and 
 ###How To Use###
 First try it out in your browser at [GPathSVG.org](http://gpathsvg.org).
 
-If you just want to include this function in your project you can download the minified version from the source folder in the repository. Note that it is dependent on JQueary for xml parsing.
+If you just want to include this function in your project you can download the minified version from the *distribution* folder in the repository. Note that it is dependent on JQueary for xml parsing.
 
 Documentation for integration into your JavaScript to coming later... 
 
