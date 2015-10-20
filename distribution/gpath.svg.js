@@ -124,7 +124,8 @@ function extractSVGpoints (shape, shape_key) {
   , point
 
   for (var key = 0; key < shape_key.length; key++) {
-    if (shape.getAttribute(shape_key[key]) === undefined) {
+    if (shape.getAttribute(shape_key[key]) === undefined ||
+      shape.getAttribute(shape_key[key]) === null) {
       point = "0"
     } else {
       point = shape.getAttribute(shape_key[key])
