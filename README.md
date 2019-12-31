@@ -19,7 +19,7 @@ The current version drops any shapes that can't natively be drawn as a path on P
 This has only been tested in the latest versions of Chrome, Firefox, Safari and Internet Explorer. There is no support for older browsers planned.
 
 ###How To Use###
-First try it out in your browser at [GPathSVG.org](http://gpathsvg.org).
+First try it out in your browser at [GPathSVG](http://ardnejar.github.io/GPath.svg/).
 
 If you just want to include this function in your project you can download the minified version from the *distribution* folder in the repository. Note that it is dependent on JQueary for xml parsing.
 
